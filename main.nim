@@ -5,6 +5,7 @@ import mustache
 
 import database
 
+const template_dir = @["./templates"]
 
 let db = createDb()
 
@@ -15,7 +16,7 @@ routes:
 
   get "/contact":
     ### list all contacts
-    let context = newContext()
+    let context = newContext(searchDirs=template_dir)
     context["contacts"] = %db.all()
     resp "{{ >contacts }}".render(context)
 
@@ -25,16 +26,14 @@ routes:
 
   get "/contact/@id":
     ## view individual contact
-    let context = newContext()
+    let context = newContext(searchDirs=template_dir)
     context["contact"] = %db.get(@"id".parseInt)
     resp "{{ >contact }}".render(context)
 
   get "/contact/@id/update":
     ## view individual contact
-    let context = newContext()
-    let contact = db.get(@"id".parseInt)
-    echo contact
-    context["contact"] = %contact
+    let context = newContext(searchDirs=template_dir)
+    context["contact"] = %db.get(@"id".parseInt)
     resp "{{ >update_contact }}".render(context)
 
   post "/contact/new":
