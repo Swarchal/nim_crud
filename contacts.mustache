@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Contacts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ #contacts }}
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ email }}</td>
+        <td>
+          <a href="/contact/{{ id }}/update">Edit</a>
+          <a href="/contact/{{ id }}">View</a>
+        </td>
+      </tr>
+      {{ /contacts }}
+    </tbody>
+  </table>
+
+  <br>
+
+  <p>
+    <a href="/contact/new">Add Contact</a>
+  </p>
+</body>
+
+</html>
