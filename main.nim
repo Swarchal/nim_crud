@@ -22,7 +22,8 @@ routes:
 
   get "/contact/new":
     ## create new contact form
-    resp "{{ >new_contact }}".render()
+    let context = newContext(searchDirs=template_dir)
+    resp "{{ >new_contact }}".render(context)
 
   get "/contact/@id":
     ## view individual contact
